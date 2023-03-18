@@ -1,0 +1,9 @@
+---
+
+- name: Restart TSM
+  service:
+    name: "{{ item }}"
+    state: restarted
+  with_items: tsm_client_use_daemons
+
+# vim: ft=ansible
