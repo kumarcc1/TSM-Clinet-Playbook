@@ -1,0 +1,12 @@
+- name: Test
+  hosts: all
+  roles:
+  - role: ansible-role-tsm-client
+    tsm_client_servers:
+      - ServerName: TEST_SRV_1
+        TCPServerAddress: test-tsm-1.example.com
+      - ServerName: TEST_SRV_2
+        TCPServerAddress: test-tsm-2.example.com
+
+
+# vim: ft=ansible

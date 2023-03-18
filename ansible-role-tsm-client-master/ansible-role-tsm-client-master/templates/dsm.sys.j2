@@ -1,0 +1,29 @@
+* {{ ansible_managed }}
+************************************************************************
+* Tivoli Storage Manager                                               *
+*                                                                      *
+* Sample Client System Options file for UNIX (dsm.sys.smp)             *
+************************************************************************
+
+*  This file contains the minimum options required to get started
+*  using TSM.  Copy dsm.sys.smp to dsm.sys.  In the dsm.sys file,
+*  enter the appropriate values for each option listed below and
+*  remove the leading asterisk (*) for each one.
+
+*  If your client node communicates with multiple TSM servers, be
+*  sure to add a stanza, beginning with the SERVERNAME option, for
+*  each additional server.
+
+************************************************************************
+
+{% for server in tsm_client_servers %}
+{%  for skey, svalue in server.iteritems() %}
+{{ skey }} {{ svalue }}
+{%  endfor %}
+NodeName {{ ansible_hostname|upper }}
+{%  for key, value in tsm_client_conf.iteritems() %}
+{{ key }} {{ value }}
+{%  endfor %}
+
+{% endfor %}
+
